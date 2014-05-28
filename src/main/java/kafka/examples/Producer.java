@@ -28,15 +28,30 @@ public class Producer extends Thread
   private final Properties props = new Properties();
 
   public Producer(String topic)
-  {
+  { 
+    // Defines where the Producer can find a one or more Brokers to determine the Leader for each topic. 
+    // This does not need to be the full set of Brokers in your cluster but should include at least two 
+    // in case the first Broker is not available. No need to worry about figuring out which Broker is the 
+    // leader for the topic (and partition), the Producer knows how to connect to the Broker and ask for 
+    // the meta data then connect to the correct Broker. Here, we are listing the three ports we created
+    // that are listening as kafka brokers in a pseudo-clustered manner.
     props.put("metadata.broker.list", KafkaProperties.brokerList);
+    
+    // Defines what Serializer to use when preparing the message for transmission to the Broker. In our 
+    // example we use a simple String encoder provided as part of Kafka. Note that the encoder must accept 
+    // the same type as defined in the KeyedMessage object in the next step. 
     props.put("serializer.class", "kafka.serializer.StringEncoder");
-    props.put("producer.type", "async");
-    props.put("batch.size", "1");
+    
+    // Tells Kafka that you want your Producer to require an acknowledgment from the Broker that the message 
+    // was received. Without this setting the Producer will 'fire and forget' possibly leading to data loss.
+    props.put("request.required.acks", "1");
+    
     // Use random partitioner. Don't need the key type. Just set it to Integer.
     // The message is of type String.
     producer = new kafka.javaapi.producer.Producer<Integer, String>(new ProducerConfig(props));
+    
     this.topic = topic;
+    
   }
   
   public void run() {

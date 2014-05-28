@@ -21,6 +21,8 @@ public interface KafkaProperties
   final static String zkConnect = "172.16.1.5:4180,172.16.1.5:4181,172.16.1.5:4182";
   final static String brokerList = "172.16.1.5:9092,172.16.1.5:9093,172.16.1.5:9094";
   
+//  final static String brokerList = "172.16.1.5:9092";
+  
   final static  String groupId = "group1";
   final static String topic = "mykafka";
   final static String kafkaServerURL = "172.16.1.5";
