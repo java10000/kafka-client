@@ -44,7 +44,7 @@ public class Consumer extends Thread
     Properties props = new Properties();
     props.put("zookeeper.connect", KafkaProperties.zkConnect);
     props.put("group.id", KafkaProperties.groupId);
-    props.put("zookeeper.session.timeout.ms", "15000");
+    props.put("zookeeper.session.timeout.ms", "2000");
     props.put("zookeeper.sync.time.ms", "200");
     props.put("auto.commit.interval.ms", "1000");
 

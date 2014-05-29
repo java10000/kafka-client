@@ -23,7 +23,7 @@ public interface KafkaProperties
   
 //  final static String brokerList = "172.16.1.5:9092";
   
-  final static  String groupId = "group1";
+  final static  String groupId = "group0";
   final static String topic = "mykafka";
   final static String kafkaServerURL = "172.16.1.5";
   final static int kafkaServerPort = 9092;
